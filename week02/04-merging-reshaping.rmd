@@ -72,14 +72,22 @@ grades <- data.frame(name = c("Amy", "Megan", "Peter", "Drew"),
                      stringsAsFactors=FALSE)
 
 # probably there are better ways to code this...
-students$grade <- NA
-
-for (i in 1:nrow(students)){
-  dist <- adist(students$name[i], grades$name)
-  if (any(dist<4)){
-    students$grade[i] <- grades$grade[which.min(dist)]
+iterations <- 1000
+timings <- numeric(1000)
+for (counter in 1:iterations) {
+  students$grade <- NA
+  start <- Sys.time()
+  for (i in 1:nrow(students)){
+    dist <- adist(students$name[i], grades$name)
+    if (any(dist<4)){
+      students$grade[i] <- grades$grade[which.min(dist)]
+    }
   }
+  end <- Sys.time()
+  timing <- as.numeric(end - start)
+  timings[counter] <- timing
 }
+print(mean(timings))
 
 students
 
@@ -87,6 +95,30 @@ students <- data.frame(name = c("Paul", "Peter", "Amy", "Megan", "Selena"),
                 age = c(18, 19, 18, 20, 21),
                 stringsAsFactors=FALSE)
 merge(students, grades)
+
+```
+
+More elegant (and faster) solution:
+```{r}
+
+match <- function(x) {
+  dist <- adist(x['name'], grades$name)
+  x['grade'] <- ifelse(any(dist < 4), grades$grade[which.min(dist)], NA)
+}
+
+iterations <- 50
+timings <- numeric(1000)
+for (counter in 1:iterations) {
+  students_new <- students
+  students_new$grade <- NA
+  
+  start <- Sys.time()
+  students_new$grade <- apply(students, MARGIN = 1, FUN = match)
+  end <- Sys.time()
+  timing <- as.numeric(end - start)
+  timings[counter] <- timing
+}
+print(mean(timings))
 
 ```
 
