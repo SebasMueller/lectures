@@ -34,7 +34,11 @@ str(xml_mps_can)
 ```{r}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 mps_nodes<- xml_nodes(xml_mps_can, xpath = "//MemberOfParliament")
+=======
+mps_nodes<- xml_nodes(xml_mps_can, "MemberOfParliament")
+>>>>>>> Stashed changes
 =======
 mps_nodes<- xml_nodes(xml_mps_can, "MemberOfParliament")
 >>>>>>> Stashed changes
@@ -54,6 +58,10 @@ as_list(mps_nodes[[1]])
 unlist(as_list(mps_nodes[[1]]))
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -69,8 +77,12 @@ as.list(unlist(as_list(mps_nodes[[1]])))
 ```{r}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 tmp <- data.frame(as.list(unlist(as_list(mps_nodes[[1]]))), stringsAsFactors = FALSE)
 View(tmp)
+=======
+data.frame(as.list(unlist(as_list(mps_nodes[[1]]))), stringsAsFactors = FALSE)
+>>>>>>> Stashed changes
 =======
 data.frame(as.list(unlist(as_list(mps_nodes[[1]]))), stringsAsFactors = FALSE)
 >>>>>>> Stashed changes
@@ -84,9 +96,13 @@ In the code chunk above, we are finally able to make a list of mps
 ## first define a function to process each member
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 node_processing <- function(x) {
   data.frame(as.list(unlist(as_list(x))), stringsAsFactors = FALSE)
 }
+=======
+node_processing <- function(x) data.frame(as.list(unlist(as_list(x))), stringsAsFactors = FALSE)
+>>>>>>> Stashed changes
 =======
 node_processing <- function(x) data.frame(as.list(unlist(as_list(x))), stringsAsFactors = FALSE)
 >>>>>>> Stashed changes
@@ -102,9 +118,12 @@ for(i in 1:length(mps_nodes)){
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ## easier
 data_list <- lapply(mps_nodes, node_processing)
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
